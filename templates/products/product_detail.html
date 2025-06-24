@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="product-detail-container">
+    <div class="product-detail-card">
+        <div class="product-image">
+            {% if product.image %}
+                <img src="{{ product.image.url }}" alt="{{ product.name }}">
+            {% else %}
+                <img src="{% static 'images/placeholder.png' %}" alt="No image available">
+            {% endif %}
+        </div>
+        <div class="product-info">
+            <h2>{{ product.name }}</h2>
+            <p class="price">₹ {{ product.price }}</p>
+            <p class="description">{{ product.description }}</p>
+
+            <div class="buttons">
+                <a href="{% url 'product_list' %}" class="btn-back">← Back to Products</a>
+                <a href="{% url 'add_to_cart' productid=product.id %}" class="btn-cart">Add to Cart</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

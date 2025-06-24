@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="home-container">
+    <div class="welcome-section">
+        <h2>Welcome to <span class="brand">MyVastra</span></h2>
+        <p class="tagline">Shop our latest collection of elegant ethnic wear crafted for women of all styles.</p>
+        <a href="{% url 'product_list' %}" class="cta-button">Browse Products</a>
+    </div>
+</div>
+{% endblock %}

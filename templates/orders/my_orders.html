@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<h2 class="orders-heading">My Orders</h2>
+
+{% if orders %}
+    <div class="orders-container">
+        {% for order in orders %}
+            <div class="order-box">
+                <div class="order-header">
+                    <h3>Order #{{ order.id }}</h3>
+                    <span class="order-status">{{ order.status }}</span>
+                </div>
+                <p><strong>Date:</strong> {{ order.ordered_at|date:"d M Y, H:i" }}</p>
+                <p><strong>Total:</strong> ₹{{ order.total_price }}</p>
+
+                <ul class="order-items">
+                    {% for item in order.items.all %}
+                        <li>
+                            <span class="item-name">{{ item.product.name }}</span>
+                            <span class="item-qty">{{ item.quantity }} × ₹{{ item.price }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+                <div class="order-actions">
+                    <a href="{% url 'download_invoice' order.id %}" class="btn-download">
+                        🧾 Download Invoice
+                    </a>
+                    <a href="{% url 'invoice_view' order.id %}" class="btn-view">
+                        📄 View Invoice
+                    </a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p class="no-orders">You haven’t placed any orders yet.</p>
+{% endif %}
+{% endblock %}

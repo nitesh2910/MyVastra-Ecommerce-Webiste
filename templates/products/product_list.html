@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h2>Our Products</h2>
+<div class="product-grid">
+    {% for product in products %}
+        {% if product.id %}
+            <div class="product-card">
+                <a href="{% url 'product_detail' productid=product.id %}">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}">
+                </a>
+                <h3>
+                    <a href="{% url 'product_detail' productid=product.id %}">{{ product.name }}</a>
+                </h3>
+                <p>₹ {{ product.price }}</p>
+                <p>{{ product.description|truncatewords:15 }}</p>
+                <a href="{% url 'product_detail' productid=product.id %}" class="btn-view">View Details</a>
+            </div>
+        {% endif %}
+    {% endfor %}
+</div>
+{% endblock %}

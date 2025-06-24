@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% load math_filters %}
+
+{% block content %}
+<div class="invoice-container">
+    <h2>Invoice</h2>
+    <hr>
+
+    <p><strong>Order ID:</strong> {{ order.id }}</p>
+    <p><strong>Date:</strong> {{ order.ordered_at|date:"d M Y, H:i" }}</p>
+    <p><strong>Customer:</strong> {{ order.name }}</p>
+    <p><strong>Phone:</strong> {{ order.phone }}</p>
+    <p><strong>Address:</strong> {{ order.address }}</p>
+
+    <table class="invoice-table">
+        <thead>
+            <tr>
+                <th>Item</th>
+                <th>Qty</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in order.items.all %}
+            <tr>
+                <td>{{ item.product.name }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>₹{{ item.price }}</td>
+                <td>₹{{ item.price|multiply:item.quantity|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Total: ₹{{ order.total_price }}</h3>
+
+    <button onclick="window.print()" class="btn-print">🖨️ Print Invoice</button>
+</div>
+{% endblock %}
