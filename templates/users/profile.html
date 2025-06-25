@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<h2>Welcome {{ profile.user.username }}</h2>
+<img src="{{ profile.profile_image.url }}" width="150" />
+<p>{{ profile.phone }}</p>
+<p>{{ profile.address }}</p>
+<a href="{% url 'profile_edit' %}">Edit Profile</a>
+
+{% endblock %}

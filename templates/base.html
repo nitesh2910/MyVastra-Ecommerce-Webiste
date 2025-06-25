@@ -1,78 +1,71 @@
-<!-- base.html -->
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>MyVastra</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <!-- Font Awesome CDN -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header>
-      <h1><a href="/">MyVastr</a></h1>
-      <nav>
-        <a href="/">Home</a>
-        <a href="{% url 'product_list' %}">Products</a>
-        <a href="{% url 'cart_detail' %}">🛒 Cart</a>
-        <a href="{% url 'my_orders' %}">My Orders</a>
+<head>
+  <meta charset="UTF-8" />
+  <title>MyVastra</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  <!-- Font Awesome CDN -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+</head>
+<body>
+  <header>
+    <h1><a href="/">MyVastra</a></h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="{% url 'product_list' %}">Products</a>
+      <a href="{% url 'cart_detail' %}">🛒 Cart</a>
+      <a href="{% url 'my_orders' %}">My Orders</a>
 
-        {% if user.is_authenticated %}
+      {% if user.is_authenticated %}
         <a href="{% url 'track_order' %}">Track Order</a>
+
         {% if request.session.cart %}
-        <a href="{% url 'checkout' %}" class="nav-checkout">Checkout</a>
+          <a href="{% url 'checkout' %}" class="nav-checkout">Checkout</a>
         {% endif %}
 
         <div class="user-info">
-          {% if user.userprofile.profile_image %}
-          <img
-            src="{{ user.userprofile.profile_image.url }}"
-            alt="Profile"
-            class="profile-pic"
-          />
+          {% if user.userprofile.profile_image and user.userprofile.profile_image.url != 'profile_pics/default-user.png' %}
+            <img src="{{ user.userprofile.profile_image.url }}" alt="Profile" class="profile-pic" />
           {% else %}
-          <img
-            src="{% static 'images/default-user.png' %}"
-            alt="Default"
-            class="profile-pic"
-          />
+            <img src="{% static 'images/default-user.png' %}" alt="Default" class="profile-pic" />
           {% endif %}
 
           <div class="user-dropdown">
-            <span class="user-name"
-              >{{ user.first_name|default:user.username }}</span
-            >
+            <span class="user-name">{{ user.first_name|default:user.username }}</span>
 
-            <!-- ✅ Logout form (POST method) -->
-            <form
-              action="{% url 'logout' %}"
-              method="post"
-              style="display: inline"
-            >
+            <!-- Logout form (POST method) -->
+            <form action="{% url 'logout' %}" method="post" style="display: inline;">
               {% csrf_token %}
               <button type="submit" class="logout-link">Logout</button>
             </form>
           </div>
         </div>
-        {% else %}
-        <a href="{% url 'login' %}">
-          <i class="fas fa-sign-in-alt"></i> Login
-        </a>
-        <a href="{% url 'register' %}">
-          <i class="fas fa-user-plus"></i> Register
-        </a>
-        {% endif %}
-      </nav>
-    </header>
+      {% else %}
+        <a href="{% url 'login' %}"><i class="fas fa-sign-in-alt"></i> Login</a>
+        <a href="{% url 'register' %}"><i class="fas fa-user-plus"></i> Register</a>
+      {% endif %}
+    </nav>
+  </header>
 
-    <main>{% block content %}{% endblock %}</main>
+  <!-- ✅ Display Django Messages -->
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <div class="alert {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
 
-    <footer>
-      <p>&copy; 2025 MyVastra</p>
-    </footer>
-  </body>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 MyVastra</p>
+  </footer>
+</body>
 </html>
