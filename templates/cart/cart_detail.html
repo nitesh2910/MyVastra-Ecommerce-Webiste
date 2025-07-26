@@ -43,8 +43,14 @@
 <h3>Total: ₹ {{ total_price }}</h3>
 
 <!-- ✅ Proceed to Checkout Button -->
-<div class="checkout-btn-container">
+{% comment %} <div class="checkout-btn-container">
     <a href="{% url 'checkout' %}" class="btn-checkout">Proceed to Checkout</a>
+</div> {% endcomment %}
+<div class="checkout-btn-container">
+    <form method="post" action="{% url 'checkout' %}">
+        {% csrf_token %}
+        <a href="{% url 'checkout' %}" class="btn-checkout">Proceed to Checkout</a>
+    </form>
 </div>
 
 {% else %}

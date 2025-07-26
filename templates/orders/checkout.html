@@ -4,7 +4,7 @@
 {% block content %}
 <h2 class="orders-heading">Checkout</h2>
 
-<form method="post" class="checkout-form">
+<form method="post" action="{% url 'checkout' %}" class="checkout-form">
     {% csrf_token %}
 
     <div class="form-container">

@@ -18,6 +18,14 @@
             <div class="buttons">
                 <a href="{% url 'product_list' %}" class="btn-back">← Back to Products</a>
                 <a href="{% url 'add_to_cart' productid=product.id %}" class="btn-cart">Add to Cart</a>
+
+                <!-- Buy Now Button using Stripe -->
+                {% comment %} <form action="{% url 'create-checkout-session' %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <input type="hidden" name="product_id" value="{{ product.id }}">
+                    <button type="submit" class="btn-buy">Buy Now</button>
+                </form> {% endcomment %}
+                <a href="{% url 'buy_now_checkout' product.id %}" class="btn-buy">Buy Now</a>
             </div>
         </div>
     </div>

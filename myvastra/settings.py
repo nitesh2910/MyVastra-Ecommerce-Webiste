@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'orders',
     'users',
     'import_export',
+    'payments',
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,9 @@ DATABASES = {
     }
 }
 
+# payments integrations keys
+STRIPE_PUBLISHABLE_KEY = "pk_test_51RokMY5Cgk9Lp1bBhfDP48D25iZxy1KmgPmXfVZz7kHYgd91u6YKg9BYtqilgPdjtSNW6U47HOAOjiAjhrrsxSJp00BvqKXpB1"
+STRIPE_SECRET_KEY = "sk_test_51RokMY5Cgk9Lp1bBgsvVzOfBdxsnxHvBG1SQsCLM76RhSNU2WWpjtPoiRxULDUZr4TK1VZAnPgzwNJ30R0eNZRcJ00Q8xpSkKN"
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators

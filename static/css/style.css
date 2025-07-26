@@ -208,6 +208,13 @@ main {
     font-weight: 500;
     transition: background-color 0.3s;
 }
+.btn-buy {
+    padding: 10px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.3s;
+}
 
 .btn-back {
     background: #eee;
@@ -216,11 +223,19 @@ main {
 
 .btn-cart {
     background: #f06292;
+   
+    color: white;
+}
+.btn-buy {
+    background: #d7034a;
     color: white;
 }
 
 .btn-back:hover {
     background: #ddd;
+}
+.btn-buy:hover {
+    background: #000000;
 }
 
 .btn-cart:hover {
