@@ -88,13 +88,23 @@ LOGOUT_REDIRECT_URL = 'login'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME':'myvastra_db',
+#         'USER': 'myvastra_user',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'myvastra_db',
-        'USER': 'myvastra_user',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
+        'NAME':'myvastradb',
+        'USER': 'myvastradb_user',
+        'PASSWORD': 'SK9DMhHriHn0wLiZ1W1jAMml7aciOxr5',
+        'HOST': 'd24vf49r0fns73dhs2ig-a.oregon-postgres.render.com',
         'PORT': '5432',
     }
 }
