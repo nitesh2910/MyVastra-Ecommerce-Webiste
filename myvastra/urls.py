@@ -33,8 +33,10 @@ urlpatterns = [
     path('payments/', include('payments.urls')),
     # path('accounts/logout/', auth_views.LogoutView.as_view(template_name='accounts/logout.html',next_page='login'), name='logout'),
     # path('categories/', include('category.urls'))
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]
 
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # if settings.DEBUG:
 #     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
