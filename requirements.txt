@@ -8,3 +8,4 @@ sqlparse==0.5.3
 tzdata==2025.2
 psycopg==3.2.9
 psycopg2-binary==2.9.10
+stripe==12.3.0
