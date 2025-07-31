@@ -17,6 +17,8 @@ services:
         value: myvastra-ecommerce-webiste.onrender.com
       - key: DJANGO_SETTINGS_MODULE
         value: myvastra.settings
+      - key: PYTHON_VERSION
+        value: 3.11
       - fromDatabase:
           name: myvastradb
           property: connectionString
