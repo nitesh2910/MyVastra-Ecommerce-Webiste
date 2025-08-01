@@ -14,8 +14,8 @@
 
 - **Backend**: Python, Django
 - **Frontend**: HTML, CSS, JavaScript
-- **Database**: SQLite (can be switched to PostgreSQL)
-- **Hosting**: *Not deployed yet*
+- **Database**: PostgreSQL
+- **Hosting**: https://myvastra-ecommerce-webiste.onrender.com/
 
 ## 📦 Installation
 
